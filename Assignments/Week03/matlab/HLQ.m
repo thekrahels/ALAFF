@@ -31,8 +31,12 @@ function [ A_out, t_out ] = HLQ( A )
     % u2 to be a column vector.  So, you will have to do some transposition
     % wizardry...
     [ alpha11, u2, tau1 ] = Housev( alpha11, ...
-                                      ??? );
+                                      a12t' );
+    a12t = u2';
       
+    w21 = ( a21 + A22 * a12t' )/ tau1;
+    a21 = a21 - w21;
+    A22 = A22 - w21 * a12t;  
     
     
 
